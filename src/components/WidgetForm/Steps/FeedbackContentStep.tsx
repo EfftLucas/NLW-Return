@@ -1,60 +1,64 @@
 import { ArrowLeft, Camera } from "phosphor-react";
 import { useState, FormEvent } from "react";
-import { FeedbackType,  feedbackTypes} from "..";
-import { CloseButton } from "../../CloseButton"
+import { FeedbackType, feedbackTypes } from "..";
+import { CloseButton } from "../../CloseButton";
 import { ScreenshotButton } from "../ScreenshotButton";
 
 interface FeedbackContentStepProps {
   feedbackType: FeedbackType;
   onFeedbackRestartRequested: () => void;
   onFeedbackSent: () => void;
- 
 }
 
+export function FeedbackContentStep({
+  feedbackType,
+  onFeedbackRestartRequested,
+  onFeedbackSent,
+}: FeedbackContentStepProps) {
+  const feedbackTypeInfo = feedbackTypes[feedbackType];
 
-export function FeedbackContentStep({feedbackType, onFeedbackRestartRequested, onFeedbackSent}: FeedbackContentStepProps) {
-  const feedbackTypeInfo = feedbackTypes[feedbackType]
-  
-  const [screenshot,SetScreenshot] = useState<string | null>(null)
+  const [screenshot, SetScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState("");
-  
+
   function HandleSubmitFeedback(event: FormEvent) {
     event.preventDefault();
 
     console.log({
       screenshot,
       comment,
-    })
+    });
     onFeedbackSent();
   }
 
-  return(
+  return (
     <>
       <header>
-        <button 
-        type="button" 
-        className="top-5 left-5 absolute text-zinc-400 hover:text-zinc-100"
-        onClick={onFeedbackRestartRequested}
+        <button
+          type="button"
+          className="top-5 left-5 absolute text-zinc-400 hover:text-zinc-100"
+          onClick={onFeedbackRestartRequested}
         >
           <ArrowLeft weight="bold" className="w-4 h-4" />
         </button>
 
-
         <span className="text-xl leading-6 flex items-center gap-2">
-          <img src={feedbackTypeInfo.image.source} alt={feedbackTypeInfo.image.alt}  className="w-6 h-6"/>
+          <img
+            src={feedbackTypeInfo.image.source}
+            alt={feedbackTypeInfo.image.alt}
+            className="w-6 h-6"
+          />
           {feedbackTypeInfo.title}
         </span>
         <CloseButton />
       </header>
 
       <form onSubmit={HandleSubmitFeedback} className="my-4 w-full">
-        <textarea 
+        <textarea
           className="min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-brand-500 focus:ring-brand-500 focus:ring-1 focus:outline-none resize-none scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
           placeholder="Conte com detalhes o que está acontecendo..."
-          onChange={event => setComment(event.target.value)}
+          onChange={(event) => setComment(event.target.value)}
         />
         <footer className="flex gap-2 mt-2">
-          
           <ScreenshotButton
             screenshot={screenshot}
             onScreenshotTook={SetScreenshot}
@@ -68,7 +72,7 @@ export function FeedbackContentStep({feedbackType, onFeedbackRestartRequested, o
             Enviar Feedback
           </button>
         </footer>
-      </form>      
+      </form>
     </>
-  )
+  );
 }
