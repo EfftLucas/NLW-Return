@@ -69,7 +69,7 @@ export function WidgetForm() {
           className="underline underline-offset-2"
           href="https://www.rocketseat.com.br/"
         >
-          RocketSeat
+          IBREP
         </a>
       </footer>
     </div>
