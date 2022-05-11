@@ -27,10 +27,23 @@ export function FeedbackContentStep({
     event.preventDefault();
 
     setIsSendFeedback(true)
-    await api.post('/feedbacks', {
+    await api.post('trello-feedbacks', {
       type: feedbackType,
       comment,
       screenshot,
+      company: "",
+      name: `[IBREP] ${feedbackType}`,
+      desc: comment,
+      pos: "top",
+      idList: "627a66de4c30953a0fc30a3f",
+      due: "",
+      dueComplete: false,
+      idLabels: "627bf1764f9ecd447c2bd4bd",
+      idMembers: "",
+      urlSource: "",
+      fileSource: "",
+      idCardSource: "",
+      keepFromSource: ""
     })
 
 

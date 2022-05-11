@@ -11,6 +11,7 @@ import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 export const feedbackTypes = {
   BUG: {
     title: "Problema",
+    ID: 0, 
     image: {
       source: bugImageUrl,
       alt: "Imagem de Inseto",
@@ -18,6 +19,7 @@ export const feedbackTypes = {
   },
   IDEA: {
     title: "Ideia",
+    ID: 2,
     image: {
       source: ideaImageUrl,
       alt: "Imagem de uma lâmpada",
@@ -25,6 +27,7 @@ export const feedbackTypes = {
   },
   OTHER: {
     title: "Outro",
+    ID: 3,
     image: {
       source: thoughtImageUrl,
       alt: "Imagem de um balão de pensamento",
